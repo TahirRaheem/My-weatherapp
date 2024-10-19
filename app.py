@@ -9,8 +9,7 @@ API_KEY = os.getenv("WEATHER_API_KEY")
 
 # Function to get weather data from OpenWeatherMap API
 def get_weather(city):
-    base_url = "https://api.openweathermap.org/data/2.5/weather?lat=24.8607&lon=67.0011&appid=your_api_key&units=metric
-"
+    base_url = "https://api.openweathermap.org/data/2.5/weather?lat=24.8607&lon=67.0011&appid=your_api_key&units=metric"
     params = {
         'q': city,
         'appid': API_KEY,
