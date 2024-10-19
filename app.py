@@ -9,17 +9,22 @@ API_KEY = os.getenv("WEATHER_API_KEY")
 
 # Function to get weather data from OpenWeatherMap API
 def get_weather(city):
-    base_url = "https://api.openweathermap.org/data/2.5/weather?lat=24.8607&lon=67.0011&appid=your_api_key&units=metric"
+    base_url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
-        'q': city,
-        'appid': API_KEY,
-        'units': 'metric'  # Celsius
+        'q': city,          # Use city name in the parameters
+        'appid': API_KEY,   # Use the loaded API key
+        'units': 'metric'   # Celsius
     }
     response = requests.get(base_url, params=params)
+
+    # Debugging: print response status code and content
+    st.write(f"Response Status Code: {response.status_code}")
+    st.write(f"Response Content: {response.json()}")  # Print actual response content
+
     if response.status_code == 200:
         return response.json()
     else:
-        st.error("City not found or API limit exceeded!")
+        st.error(f"Error: {response.json().get('message', 'Unknown error')}")
         return None
 
 # Streamlit app interface
